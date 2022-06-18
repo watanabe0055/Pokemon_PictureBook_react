@@ -1,9 +1,8 @@
-import React from "react";
+import dataTest from "../../date/pokedex";
 
-import PokemonDate from "../../date/pokedex.json";
-
-const PokemonDateFetch = () => {
-  return PokemonDate;
+const PokemonDateFetch: any = (id: number) => {
+  console.log(dataTest[id]);
+  return dataTest[id];
 };
 
 export default PokemonDateFetch;
