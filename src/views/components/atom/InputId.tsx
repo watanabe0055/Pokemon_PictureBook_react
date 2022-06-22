@@ -1,22 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
-import { PokemonDateFetch } from "./views/components/modules/PokemonDateFetch";
+import { PokemonDateFetch } from "../modules/PokemonDateFetch";
 
-function App() {
+export const InputId = () => {
   return (
     <>
       <div className="App">
-        {/* <input
+        <input
           placeholder="0"
           onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
             const value: number = Number(event.target.value);
             PokemonDateFetch(value);
           }}
-        /> */}
+        />
       </div>
-      <PokemonDateFetch></PokemonDateFetch>
     </>
   );
-}
-
-export default App;
+};

@@ -1,5 +1,6 @@
+// pokedex.jsonを受け取る為の型定義
 declare module "./pokedex.json" {
-  interface TestData {
+  interface Pokemon {
     id: number;
     name: {
       english: string;
@@ -12,12 +13,12 @@ declare module "./pokedex.json" {
       HP: number;
       Attack: number;
       Defense: number;
-      "Sp. Attack": number;
-      "Sp. Defense": number;
+      SpAttackk: number;
+      SpDefense: number;
       Speed: number;
     };
   }
-  const value: TestData;
+  const value: Data;
   export = value;
 }
 
