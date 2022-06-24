@@ -1,25 +1,37 @@
 import React, { useState, useEffect } from "react";
 
-//import Data from "../../date/pokedex";
 import Pokemonjson from "../../date/pokedex.json";
-import { InputId } from "../atom/InputId";
+// import thumbnails from "../../date/thumbnails";
+
+import { Card } from "../atom/Card";
 
 // pokedex.jsonからデータを取得する
 export const PokemonDateFetch: any = (num: number) => {
-  const [pid, setPid] = useState(0);
+  const [pid, setPid] = useState();
   const [pname, setPname] = useState("");
   const [ptype, setPtype] = useState("");
-  const [pbase, setPbase] = useState("");
+  const [pbaseAtt, setPbaseAtt] = useState("");
+  const [pbaseDef, setPbaseDef] = useState("");
+  const [pbaseSp_att, setPbaseSp_att] = useState("");
+  const [pbaseSp_def, setPbaseSp_def] = useState("");
+  const [pbaseSpeed, setPbaseSpeed] = useState("");
   const print = (num: number) => {
     const pokemon = pokemonDate(num);
     setPid(pokemon.id);
     setPname(pokemon.name);
     setPtype(pokemon.type);
-    setPbase(pokemon.base.att);
-    console.log(pokemon);
+    setPbaseAtt(pokemon.base.att);
+    setPbaseDef(pokemon.base.def);
+    setPbaseSp_att(pokemon.base.sp_att);
+    setPbaseSp_def(pokemon.base.sp_def);
+    setPbaseSpeed(pokemon.base.speed);
   };
 
   const pokemonDate = (num: number) => {
+    const imageNum: string = String(num);
+    if (num > 10) {
+      console.log(imageNum);
+    }
     const date = Pokemonjson[num - 1] || Pokemonjson[0];
     const pokemon: any = {
       id: date.id,
@@ -46,10 +58,16 @@ export const PokemonDateFetch: any = (num: number) => {
           print(value);
         }}
       />
-      <p>{pid}</p>
-      <p>{pname}</p>
-      <p>{ptype}</p>
-      <p>{pbase}</p>
+      <Card>
+        <p>{pid}</p>
+        <p>{pname}</p>
+        <p>{ptype}</p>
+        <p>{pbaseAtt}</p>
+        <p>{pbaseDef}</p>
+        <p>{pbaseSp_att}</p>
+        <p>{pbaseSp_def}</p>
+        <p>{pbaseSpeed}</p>
+      </Card>
     </>
   );
 };

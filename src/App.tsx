@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from "react";
+import styled from "styled-components";
 
 import { PokemonDateFetch } from "./views/components/modules/PokemonDateFetch";
+
+const Contents = styled.div`
+  height: 100%;
+  background-color: #7c83fd;
+  padding: 20px;
+`;
 
 function App() {
   return (
     <>
-      <div className="App">
-        {/* <input
-          placeholder="0"
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-            const value: number = Number(event.target.value);
-            PokemonDateFetch(value);
-          }}
-        /> */}
-      </div>
-      <PokemonDateFetch></PokemonDateFetch>
+      <Contents>
+        <PokemonDateFetch />
+      </Contents>
     </>
   );
 }
