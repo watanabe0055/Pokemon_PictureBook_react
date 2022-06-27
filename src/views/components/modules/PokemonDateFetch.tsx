@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 
 import Pokemonjson from "../../date/pokedex.json";
-// import thumbnails from "../../date/thumbnails";
 
 import { Card } from "../atom/Card";
 
 // pokedex.jsonからデータを取得する
-export const PokemonDateFetch: any = (num: number) => {
+export const PokemonDateFetch: any = (num: number = 1) => {
   const [pid, setPid] = useState();
   const [pname, setPname] = useState("");
   const [ptype, setPtype] = useState("");
@@ -15,6 +14,7 @@ export const PokemonDateFetch: any = (num: number) => {
   const [pbaseSp_att, setPbaseSp_att] = useState("");
   const [pbaseSp_def, setPbaseSp_def] = useState("");
   const [pbaseSpeed, setPbaseSpeed] = useState("");
+  const [pImage, setPimage] = useState("");
   const print = (num: number) => {
     const pokemon = pokemonDate(num);
     setPid(pokemon.id);
@@ -25,13 +25,21 @@ export const PokemonDateFetch: any = (num: number) => {
     setPbaseSp_att(pokemon.base.sp_att);
     setPbaseSp_def(pokemon.base.sp_def);
     setPbaseSpeed(pokemon.base.speed);
+    setPimage(pokemon.image);
   };
 
-  const pokemonDate = (num: number) => {
+  const pokemonDate = (num: number = 1) => {
+    //画像取得
     const imageNum: string = String(num);
-    if (num > 10) {
-      console.log(imageNum);
+    let getImage: string = "001";
+    if (num < 10) {
+      getImage = `00${imageNum}`;
+    } else if (num >= 10 && num <= 99) {
+      getImage = `0${imageNum}`;
+    } else {
+      getImage = imageNum;
     }
+
     const date = Pokemonjson[num - 1] || Pokemonjson[0];
     const pokemon: any = {
       id: date.id,
@@ -45,6 +53,7 @@ export const PokemonDateFetch: any = (num: number) => {
         sp_def: date.base.SpDefense,
         speed: date.base.Speed,
       },
+      image: `../../../date/thumbnails/${getImage}.png`,
     };
     return pokemon;
   };
@@ -58,16 +67,17 @@ export const PokemonDateFetch: any = (num: number) => {
           print(value);
         }}
       />
-      <Card>
-        <p>{pid}</p>
-        <p>{pname}</p>
-        <p>{ptype}</p>
-        <p>{pbaseAtt}</p>
-        <p>{pbaseDef}</p>
-        <p>{pbaseSp_att}</p>
-        <p>{pbaseSp_def}</p>
-        <p>{pbaseSpeed}</p>
-      </Card>
+      <Card
+        image={pImage}
+        id={pid}
+        name={pname}
+        type={ptype}
+        att={pbaseAtt}
+        def={pbaseDef}
+        sp_att={pbaseSp_att}
+        sp_def={pbaseSp_def}
+        speed={pbaseSpeed}
+      ></Card>
     </>
   );
 };
