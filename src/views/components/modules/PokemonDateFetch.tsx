@@ -1,8 +1,20 @@
 import React, { useState, useEffect } from "react";
+import styled from "styled-components";
 
 import Pokemonjson from "../../date/pokedex.json";
 
 import { Card } from "../atom/Card";
+
+const InputNumber = styled.input`
+  margin: 15px;
+  width: 230px;
+  border: 1px solid #79b4b7;
+  border-radius: 5px;
+  &::placeholder {
+    padding-left: 5px;
+    font-size: 0.8em;
+  }
+`;
 
 // pokedex.jsonからデータを取得する
 export const PokemonDateFetch: any = (num: number = 1) => {
@@ -16,7 +28,7 @@ export const PokemonDateFetch: any = (num: number = 1) => {
   const [pbaseSpeed, setPbaseSpeed] = useState("");
   const [pImage, setPimage] = useState("");
 
-  const print = (num: number) => {
+  const print = (num: number = 1) => {
     const pokemon = pokemonDate(num);
     setPid(pokemon.id);
     setPname(pokemon.name);
@@ -61,8 +73,9 @@ export const PokemonDateFetch: any = (num: number = 1) => {
 
   return (
     <>
-      <input
-        placeholder="0"
+      <InputNumber
+        type="number"
+        placeholder="ID番号を入力してください"
         onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
           const value: number = Number(event.target.value);
           print(value);
