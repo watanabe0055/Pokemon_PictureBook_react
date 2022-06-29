@@ -15,6 +15,7 @@ export const PokemonDateFetch: any = (num: number = 1) => {
   const [pbaseSp_def, setPbaseSp_def] = useState("");
   const [pbaseSpeed, setPbaseSpeed] = useState("");
   const [pImage, setPimage] = useState("");
+
   const print = (num: number) => {
     const pokemon = pokemonDate(num);
     setPid(pokemon.id);
@@ -53,7 +54,7 @@ export const PokemonDateFetch: any = (num: number = 1) => {
         sp_def: date.base.SpDefense,
         speed: date.base.Speed,
       },
-      image: `../../../date/thumbnails/${getImage}.png`,
+      image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${imageNum}.png`,
     };
     return pokemon;
   };
