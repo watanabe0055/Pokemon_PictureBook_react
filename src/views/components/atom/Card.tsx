@@ -15,6 +15,10 @@ const CardItems = styled.div`
   margin-left: 5px;
   padding: 10px;
 `;
+const Img = styled.img`
+  height: 100px;
+  width: 100px;
+`;
 
 export const Card = (props: any) => {
   const { image, id, name, type, att, def, sp_att, sp_def, speed } = props;
@@ -22,7 +26,7 @@ export const Card = (props: any) => {
   return (
     <PokemonCard>
       <CardItems>
-        <img src={image} />
+        <Img src={image} alt={`${name}の画像`} />
       </CardItems>
       <CardItems>
         <p>No:</p>
