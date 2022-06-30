@@ -22,7 +22,6 @@ const Img = styled.img`
 
 export const Card = (props: any) => {
   let { image, id, name, type, att, def, sp_att, sp_def, speed } = props;
-  console.log(image);
 
   return (
     <PokemonCard>

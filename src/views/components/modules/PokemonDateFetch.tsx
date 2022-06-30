@@ -70,7 +70,6 @@ export const PokemonDateFetch: any = (num: number = 1) => {
     };
     return pokemon;
   };
-  console.log("aa");
 
   return (
     <>
