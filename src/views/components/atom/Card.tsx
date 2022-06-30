@@ -21,22 +21,28 @@ const Img = styled.img`
 `;
 
 export const Card = (props: any) => {
-  const { image, id, name, type, att, def, sp_att, sp_def, speed } = props;
-  console.log(image);
+  let { image, id, name, type, att, def, sp_att, sp_def, speed } = props;
+
   return (
     <PokemonCard>
       <CardItems>
-        <Img src={image} alt={`${name}の画像`} />
+        <Img
+          src={
+            image ||
+            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
+          }
+          alt={`${name}の画像`}
+        />
       </CardItems>
       <CardItems>
         <p>No:</p>
-        <div>{id}</div>
+        <div>{id || "001"}</div>
       </CardItems>
       <CardItems>
         <p>名前:</p>
-        <div>{name}</div>
+        <div>{name || "フシギダネ"}</div>
       </CardItems>
-      <CardItems>
+      {/* <CardItems>
         <p>タイプ:</p>
         <div>{type}</div>
       </CardItems>
@@ -64,7 +70,7 @@ export const Card = (props: any) => {
       <CardItems>
         <p>素早さ:</p>
         <div>{speed}</div>
-      </CardItems>
+      </CardItems> */}
     </PokemonCard>
   );
 };
