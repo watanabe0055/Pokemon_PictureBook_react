@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { idText } from "typescript";
 
 import { PokemonAllFeatch } from "./views/components/modules/PokemonAllFeatch";
 import { PokemonDateFetch } from "./views/components/modules/PokemonDateFetch";
@@ -72,7 +71,6 @@ function App() {
                 return <PokemonAllFeatch key={i} id={i} />;
               })}
           </div>
-          {/* <PokemonAllFeatch id={1} /> */}
           {/* <PokemonDateFetch /> */}
         </Contents>
       </GlobalStyle>
