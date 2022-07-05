@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
+import { PokemonAllFeatch } from "./views/components/modules/PokemonAllFeatch";
 import { PokemonDateFetch } from "./views/components/modules/PokemonDateFetch";
 
 const Contents = styled.div`
@@ -56,11 +57,21 @@ const GlobalStyle = styled.div`
 `;
 
 function App() {
+  //todo 最新は898まで存在しているが、データが出揃っていない
+  const maxNumber = 809;
+  const pokemonAll = PokemonDateFetch();
   return (
     <>
       <GlobalStyle>
         <Contents>
-          <PokemonDateFetch />
+          <div>
+            {Array(809)
+              .fill("test")
+              .map((val, i) => {
+                return <PokemonAllFeatch key={i} id={i} />;
+              })}
+          </div>
+          {/* <PokemonDateFetch /> */}
         </Contents>
       </GlobalStyle>
     </>
