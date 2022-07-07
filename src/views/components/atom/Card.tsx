@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 const PokemonCard = styled.div`
-  width: 280px;
-  min-height: 320px;
+  width: 200px;
+  height: 180px;
   margin: 15px;
   border-radius: 10px;
   box-shadow: 0 2px 5px #ccc;
@@ -11,65 +11,70 @@ const PokemonCard = styled.div`
 `;
 
 const CardItems = styled.div`
-  display: flex;
-  margin-left: 5px;
-  padding: 10px;
+  padding: 3px;
 `;
 const Img = styled.img`
   height: 100px;
   width: 100px;
 `;
 
+const InfoValue = styled.div`
+  margin-left: 25px;
+`;
+
+const PokemonImgBox = styled.div`
+  text-align: center;
+`;
+
 export const Card = (props: any) => {
   let { image, id, name, type, att, def, sp_att, sp_def, speed } = props;
-
   return (
     <PokemonCard>
       <CardItems>
-        <Img
-          src={
-            image ||
-            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
-          }
-          alt={`${name}の画像`}
-        />
+        <PokemonImgBox>
+          <Img
+            src={
+              image ||
+              "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
+            }
+            alt={`${name}の画像`}
+          />
+        </PokemonImgBox>
       </CardItems>
       <CardItems>
-        <p>No:</p>
-        <div>{id || "001"}</div>
+        <InfoValue>No:{id || "001"}</InfoValue>
       </CardItems>
       <CardItems>
-        <p>名前:</p>
-        <div>{name || "フシギダネ"}</div>
+        <InfoValue>{name || "フシギダネ"}</InfoValue>
       </CardItems>
       {/* <CardItems>
         <p>タイプ:</p>
-        <div>{type}</div>
+        <InfoValue>{type}</InfoValue>
       </CardItems>
 
       <CardItems>
         <p>攻撃：</p>
-        <div>{att}</div>
+        <InfoValue>{att}</InfoValue>
       </CardItems>
 
       <CardItems>
         <p>防御：</p>
-        <div>{def}</div>
+        <InfoValue>{def}</InfoValue>
       </CardItems>
 
       <CardItems>
         <p>特攻：</p>
-        <div>{sp_att}</div>
+        <InfoValue>{sp_att}</InfoValue>
       </CardItems>
 
       <CardItems>
         <p>特防：</p>
-        <div>{sp_def}</div>
+        <InfoValue>{sp_def}</InfoValue>
       </CardItems>
 
       <CardItems>
         <p>素早さ:</p>
-        <div>{speed}</div>
+        <InfoValue>{speed}</InfoValue>
       </CardItems> */}
     </PokemonCard>
   );
