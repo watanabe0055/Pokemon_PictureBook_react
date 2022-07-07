@@ -62,18 +62,16 @@ function App() {
   const pokemonAll = PokemonDateFetch();
   return (
     <>
-      <GlobalStyle>
-        <Contents>
-          <div>
-            {Array(809)
-              .fill("test")
-              .map((val, i) => {
-                return <PokemonAllFeatch key={i} id={i} />;
-              })}
-          </div>
-          {/* <PokemonDateFetch /> */}
-        </Contents>
-      </GlobalStyle>
+      <Contents>
+        <div>
+          {Array(810)
+            .fill("test", 1)
+            .map((val, i) => {
+              return <PokemonAllFeatch key={i} id={i} />;
+            })}
+        </div>
+        {/* <PokemonDateFetch /> */}
+      </Contents>
     </>
   );
 }

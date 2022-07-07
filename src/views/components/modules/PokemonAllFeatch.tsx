@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
+import styled from "styled-components";
 
 import Pokemonjson from "../../date/pokedex.json";
+import { Card } from "../atom/Card";
+
+const GridCard = styled.div`
+  display: inline-block;
+`;
 
 export const PokemonAllFeatch: any = ({ id }: any) => {
   const [pid, setPid] = useState();
@@ -27,7 +33,7 @@ export const PokemonAllFeatch: any = ({ id }: any) => {
 
     const date = Pokemonjson[num - 1] || Pokemonjson[0];
     const pokemon: any = {
-      id: date.id,
+      id: getImage,
       name: date.name.japanese,
       type: date.type,
       base: {
@@ -60,9 +66,19 @@ export const PokemonAllFeatch: any = ({ id }: any) => {
 
   return (
     <>
-      <p>{pid}</p>
-      <p>{pname}</p>
-      <p>{ptype}</p>
+      <GridCard>
+        <Card
+          image={pImage}
+          id={pid}
+          name={pname}
+          type={ptype}
+          att={pbaseAtt}
+          def={pbaseDef}
+          sp_att={pbaseSp_att}
+          sp_def={pbaseSp_def}
+          speed={pbaseSpeed}
+        ></Card>
+      </GridCard>
     </>
   );
   return <div>PokemonAllFeatch</div>;
