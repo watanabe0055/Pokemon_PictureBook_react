@@ -6,7 +6,7 @@ import { PokemonDateFetch } from "./views/components/modules/PokemonDateFetch";
 
 const Contents = styled.div`
   height: 100%;
-  /* background-color: #7c83fd; */
+  background-color: #7c83fd;
   padding: 20px;
 `;
 //resset css
@@ -63,6 +63,7 @@ function App() {
   return (
     <>
       <Contents>
+        <PokemonDateFetch />
         <div>
           {Array(810)
             .fill("test", 1)
@@ -70,7 +71,6 @@ function App() {
               return <PokemonAllFeatch key={i} id={i} />;
             })}
         </div>
-        {/* <PokemonDateFetch /> */}
       </Contents>
     </>
   );
