@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Pokemonjson from "../../date/pokedex.json";
 
 import { Card } from "../atom/Card";
+import Modal from "../atom/Modal";
 
 const InputNumber = styled.input`
   margin: 15px;
@@ -18,6 +19,7 @@ const InputNumber = styled.input`
 
 // pokedex.jsonからデータを取得する
 export const PokemonDateFetch: any = (num: number = 1) => {
+  const [showModal, setShowModal] = useState(false);
   const [pid, setPid] = useState();
   const [pname, setPname] = useState("");
   const [ptype, setPtype] = useState("");
@@ -30,6 +32,7 @@ export const PokemonDateFetch: any = (num: number = 1) => {
 
   const print = (num: number = 1) => {
     const pokemon = pokemonDate(num);
+    setShowModal(true);
     setPid(pokemon.id);
     setPname(pokemon.name);
     setPtype(pokemon.type);
@@ -81,7 +84,9 @@ export const PokemonDateFetch: any = (num: number = 1) => {
           print(value);
         }}
       />
-      <Card
+      <Modal
+        showFlag={showModal}
+        setShowFlag={setShowModal}
         image={pImage}
         id={pid}
         name={pname}
@@ -91,7 +96,7 @@ export const PokemonDateFetch: any = (num: number = 1) => {
         sp_att={pbaseSp_att}
         sp_def={pbaseSp_def}
         speed={pbaseSpeed}
-      ></Card>
+      ></Modal>
     </>
   );
 };

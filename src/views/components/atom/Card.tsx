@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Modal from "./Modal";
 
 const PokemonCard = styled.div`
   width: 200px;
@@ -28,7 +29,12 @@ const PokemonImgBox = styled.div`
 
 export const Card = (props: any) => {
   let { image, id, name, type, att, def, sp_att, sp_def, speed } = props;
+
+  // const pokemonCardOnclick = () => {
+  //   Modal(props);
+  // };
   return (
+    // <PokemonCard onClick={pokemonCardOnclick}>
     <PokemonCard>
       <CardItems>
         <PokemonImgBox>
@@ -47,35 +53,6 @@ export const Card = (props: any) => {
       <CardItems>
         <InfoValue>{name || "フシギダネ"}</InfoValue>
       </CardItems>
-      {/* <CardItems>
-        <p>タイプ:</p>
-        <InfoValue>{type}</InfoValue>
-      </CardItems>
-
-      <CardItems>
-        <p>攻撃：</p>
-        <InfoValue>{att}</InfoValue>
-      </CardItems>
-
-      <CardItems>
-        <p>防御：</p>
-        <InfoValue>{def}</InfoValue>
-      </CardItems>
-
-      <CardItems>
-        <p>特攻：</p>
-        <InfoValue>{sp_att}</InfoValue>
-      </CardItems>
-
-      <CardItems>
-        <p>特防：</p>
-        <InfoValue>{sp_def}</InfoValue>
-      </CardItems>
-
-      <CardItems>
-        <p>素早さ:</p>
-        <InfoValue>{speed}</InfoValue>
-      </CardItems> */}
     </PokemonCard>
   );
 };
