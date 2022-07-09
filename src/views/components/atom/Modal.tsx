@@ -25,6 +25,25 @@ const InfoValue = styled.div`
 const PokemonImgBox = styled.div`
   text-align: center;
 `;
+
+const Overlay = styled.div`
+  position: "fixed";
+  top: 0;
+  left: 0;
+  width: "100%";
+  height: "100%";
+  background-color: "rgba(0,0,0,0.5)";
+  display: "flex";
+  align-items: "center";
+  justify-content: "center";
+`;
+
+const ModalContent = styled.div`
+  background: white;
+  padding: 10px;
+  border-radius: 3px;
+`;
+
 const Modal: any = (props: any) => {
   let {
     showFlag,
@@ -43,50 +62,51 @@ const Modal: any = (props: any) => {
   const closeModal = () => {
     setShowFlag(false);
   };
+
   return (
     <>
-      {showFlag ? (
-        <PokemonCard>
-          <button onClick={closeModal}>閉じる</button>
-          <CardItems>
-            <PokemonImgBox>
-              <Img
-                src={
-                  image ||
-                  "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
-                }
-                alt={`${name}の画像`}
-              />
-            </PokemonImgBox>
-          </CardItems>
-          <CardItems>
-            <InfoValue>No:{id || "001"}</InfoValue>
-          </CardItems>
-          <CardItems>
-            <InfoValue>{name || "フシギダネ"}</InfoValue>
-          </CardItems>
-          <CardItems>
-            <InfoValue>タイプ:{type}</InfoValue>
-          </CardItems>
-          <CardItems>
-            <InfoValue>攻撃：{att}</InfoValue>
-          </CardItems>
-          <CardItems>
-            <InfoValue>防御：{def}</InfoValue>
-          </CardItems>
-          <CardItems>
-            <InfoValue>特攻：{sp_att}</InfoValue>
-          </CardItems>
-          <CardItems>
-            <InfoValue>特防：{sp_def}</InfoValue>
-          </CardItems>
-          <CardItems>
-            <InfoValue>素早さ:{speed}</InfoValue>
-          </CardItems>
-        </PokemonCard>
-      ) : (
-        <></>
-      )}
+      <Overlay>
+        <ModalContent>
+          <PokemonCard>
+            <button onClick={closeModal}>閉じる</button>
+            <CardItems>
+              <PokemonImgBox>
+                <Img
+                  src={
+                    image ||
+                    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
+                  }
+                  alt={`${name}の画像`}
+                />
+              </PokemonImgBox>
+            </CardItems>
+            <CardItems>
+              <InfoValue>No:{id || "001"}</InfoValue>
+            </CardItems>
+            <CardItems>
+              <InfoValue>{name || "フシギダネ"}</InfoValue>
+            </CardItems>
+            <CardItems>
+              <InfoValue>タイプ:{type}</InfoValue>
+            </CardItems>
+            <CardItems>
+              <InfoValue>攻撃：{att}</InfoValue>
+            </CardItems>
+            <CardItems>
+              <InfoValue>防御：{def}</InfoValue>
+            </CardItems>
+            <CardItems>
+              <InfoValue>特攻：{sp_att}</InfoValue>
+            </CardItems>
+            <CardItems>
+              <InfoValue>特防：{sp_def}</InfoValue>
+            </CardItems>
+            <CardItems>
+              <InfoValue>素早さ:{speed}</InfoValue>
+            </CardItems>
+          </PokemonCard>
+        </ModalContent>
+      </Overlay>
     </>
   );
 };

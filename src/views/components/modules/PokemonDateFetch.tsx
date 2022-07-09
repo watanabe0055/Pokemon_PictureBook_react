@@ -84,19 +84,24 @@ export const PokemonDateFetch: any = (num: number = 1) => {
           print(value);
         }}
       />
-      <Modal
-        showFlag={showModal}
-        setShowFlag={setShowModal}
-        image={pImage}
-        id={pid}
-        name={pname}
-        type={ptype}
-        att={pbaseAtt}
-        def={pbaseDef}
-        sp_att={pbaseSp_att}
-        sp_def={pbaseSp_def}
-        speed={pbaseSpeed}
-      ></Modal>
+      {showModal ? (
+        <Modal
+          showFlag={showModal}
+          setShowFlag={setShowModal}
+          image={pImage}
+          id={pid}
+          name={pname}
+          type={ptype}
+          att={pbaseAtt}
+          def={pbaseDef}
+          sp_att={pbaseSp_att}
+          sp_def={pbaseSp_def}
+          speed={pbaseSpeed}
+        ></Modal>
+      ) : (
+        <></>
+      )}
+      ;
     </>
   );
 };
