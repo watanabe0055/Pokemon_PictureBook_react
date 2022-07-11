@@ -1,68 +1,24 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import Colorpicker from "./views/components/modules/Colorpicker";
 
 import { PokemonAllFeatch } from "./views/components/modules/PokemonAllFeatch";
 import { PokemonDateFetch } from "./views/components/modules/PokemonDateFetch";
 
 const Contents = styled.div`
   height: 100%;
-  background-color: #7c83fd;
   padding: 20px;
-`;
-//resset css
-const GlobalStyle = styled.div`
-  *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
-  }
-  * {
-    margin: 0;
-  }
-  html,
-  body {
-    height: 100%;
-  }
-  body {
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-  }
-  img,
-  picture,
-  video,
-  canvas,
-  svg {
-    display: block;
-    max-width: 100%;
-  }
-  input,
-  button,
-  textarea,
-  select {
-    font: inherit;
-  }
-  p,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    overflow-wrap: break-word;
-  }
-  #root,
-  #__next {
-    isolation: isolate;
-  }
+  background-color: ${(color) => color.theme.color};
 `;
 
 function App() {
   //todo 最新は898まで存在しているが、データが出揃っていない
-  const maxNumber = 809;
-  const pokemonAll = PokemonDateFetch();
+  // const maxNumber = 809;
+  const [color, setColort] = useState("#7c83fd");
   return (
     <>
-      <Contents>
+      <Contents theme={{ color: color }}>
+        <Colorpicker setColort={setColort} />
         <PokemonDateFetch />
         <div>
           {Array(810)
