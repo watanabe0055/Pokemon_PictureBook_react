@@ -30,11 +30,7 @@ const PokemonImgBox = styled.div`
 export const Card = (props: any) => {
   let { image, id, name, type, att, def, sp_att, sp_def, speed } = props;
 
-  // const pokemonCardOnclick = () => {
-  //   Modal(props);
-  // };
   return (
-    // <PokemonCard onClick={pokemonCardOnclick}>
     <PokemonCard>
       <CardItems>
         <PokemonImgBox>

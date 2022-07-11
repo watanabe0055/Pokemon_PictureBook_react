@@ -31,6 +31,12 @@ export const PokemonDateFetch: any = (num: number = 1) => {
   const [pImage, setPimage] = useState("");
 
   const print = (num: number = 1) => {
+    //検索不可能なポケモンを選択した時に、モーダルを非表示にする
+    if (num === 0 || num > 809) {
+      setShowModal(false);
+      return;
+    }
+    //検索可能なポケモンの時は、モーダルを表示する
     const pokemon = pokemonDate(num);
     setShowModal(true);
     setPid(pokemon.id);
@@ -80,23 +86,27 @@ export const PokemonDateFetch: any = (num: number = 1) => {
         type="number"
         placeholder="ID番号を入力してください"
         onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-          const value: number = Number(event.target.value);
+          const value: any = Number(event.target.value);
           print(value);
         }}
       />
-      <Modal
-        showFlag={showModal}
-        setShowFlag={setShowModal}
-        image={pImage}
-        id={pid}
-        name={pname}
-        type={ptype}
-        att={pbaseAtt}
-        def={pbaseDef}
-        sp_att={pbaseSp_att}
-        sp_def={pbaseSp_def}
-        speed={pbaseSpeed}
-      ></Modal>
+      {showModal ? (
+        <Modal
+          showFlag={showModal}
+          setShowFlag={setShowModal}
+          image={pImage}
+          id={pid}
+          name={pname}
+          type={ptype}
+          att={pbaseAtt}
+          def={pbaseDef}
+          sp_att={pbaseSp_att}
+          sp_def={pbaseSp_def}
+          speed={pbaseSpeed}
+        ></Modal>
+      ) : (
+        <></>
+      )}
     </>
   );
 };
