@@ -14,7 +14,9 @@ const Contents = styled.div`
 function App() {
   //todo 最新は898まで存在しているが、データが出揃っていない
   // const maxNumber = 809;
-  const [color, setColort] = useState("#7c83fd");
+  const token = localStorage.getItem("pickColor");
+  const [color, setColort] = useState(token);
+
   return (
     <>
       <Contents theme={{ color: color }}>
