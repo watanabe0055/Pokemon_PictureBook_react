@@ -27,29 +27,11 @@ const PokemonImgBox = styled.div`
   text-align: center;
 `;
 
-const Modal: any = (props: any) => {
-  let {
-    showFlag,
-    setShowFlag,
-    image,
-    id,
-    name,
-    type,
-    att,
-    def,
-    sp_att,
-    sp_def,
-    speed,
-  } = props;
-
-  const closeModal = () => {
-    setShowFlag(false);
-  };
-
+const ModalCard: any = (props: any) => {
+  let { image, id, name, type, att, def, sp_att, sp_def, speed } = props;
   return (
     <>
       <PokemonCard>
-        <button onClick={closeModal}>閉じる</button>
         <CardItems>
           <PokemonImgBox>
             <Img
@@ -90,4 +72,4 @@ const Modal: any = (props: any) => {
   );
 };
 
-export default Modal;
+export default ModalCard;

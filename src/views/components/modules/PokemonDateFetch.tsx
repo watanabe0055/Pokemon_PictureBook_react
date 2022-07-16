@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import Modal from "react-modal";
 
 import Pokemonjson from "../../date/pokedex.json";
 
 import { Card } from "../atom/Card";
-import Modal from "../atom/Modal";
+import ModalCard from "../atom/ModalCard";
 
 const InputNumber = styled.input`
   margin: 15px;
@@ -16,6 +17,17 @@ const InputNumber = styled.input`
     font-size: 0.8em;
   }
 `;
+
+const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+  },
+};
 
 // pokedex.jsonからデータを取得する
 export const PokemonDateFetch: any = (num: number = 1) => {
@@ -80,6 +92,10 @@ export const PokemonDateFetch: any = (num: number = 1) => {
     return pokemon;
   };
 
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
   return (
     <>
       <InputNumber
@@ -90,10 +106,15 @@ export const PokemonDateFetch: any = (num: number = 1) => {
           print(value);
         }}
       />
-      {showModal ? (
-        <Modal
-          showFlag={showModal}
-          setShowFlag={setShowModal}
+      <Modal
+        isOpen={showModal}
+        ariaHideApp={false}
+        onRequestClose={() => setShowModal(false)}
+        style={customStyles}
+        contentLabel="pokemon_card_Modal"
+      >
+        <button onClick={closeModal}>閉じる</button>
+        <ModalCard
           image={pImage}
           id={pid}
           name={pname}
@@ -103,10 +124,8 @@ export const PokemonDateFetch: any = (num: number = 1) => {
           sp_att={pbaseSp_att}
           sp_def={pbaseSp_def}
           speed={pbaseSpeed}
-        ></Modal>
-      ) : (
-        <></>
-      )}
+        ></ModalCard>
+      </Modal>
     </>
   );
 };

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Modal from "./Modal";
+import Modal from "./ModalCard";
 
 const PokemonCard = styled.div`
   width: 200px;

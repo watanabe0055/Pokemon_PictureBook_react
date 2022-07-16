@@ -48,6 +48,7 @@ export const PokemonAllFeatch: any = ({ id }: any) => {
     };
     return pokemon;
   };
+
   useEffect(() => {
     if (id === 0) {
       return;
