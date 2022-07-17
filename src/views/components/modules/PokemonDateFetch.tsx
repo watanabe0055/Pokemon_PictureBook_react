@@ -26,6 +26,7 @@ const customStyles = {
     bottom: "auto",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
+    overflowy: "hidden",
   },
 };
 
@@ -93,7 +94,14 @@ export const PokemonDateFetch: any = (num: number = 1) => {
   };
 
   const closeModal = () => {
+    document.body.style.overflow = "hidden";
     setShowModal(false);
+  };
+  const disableScroll = () => {
+    document.body.style.overflow = "hidden";
+  };
+  const ableScroll = () => {
+    document.body.style.overflow = "auto";
   };
 
   return (
@@ -111,7 +119,8 @@ export const PokemonDateFetch: any = (num: number = 1) => {
         ariaHideApp={false}
         onRequestClose={() => setShowModal(false)}
         style={customStyles}
-        contentLabel="pokemon_card_Modal"
+        onAfterOpen={disableScroll}
+        onAfterClose={ableScroll}
       >
         <button onClick={closeModal}>閉じる</button>
         <ModalCard
