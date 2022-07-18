@@ -4,7 +4,7 @@ import Modal from "react-modal";
 
 import Pokemonjson from "../../date/pokedex.json";
 
-import { Card } from "../atom/Card";
+import Button from "../atom/Button";
 import ModalCard from "../atom/ModalCard";
 import icon_search from "../asset/icon_search.svg";
 import close from "../asset/close.svg";
@@ -129,7 +129,6 @@ export const PokemonDateFetch: any = (num: number = 1) => {
         alt="My Happy SVG"
         onClick={openSearchModal}
       />
-
       <Modal
         isOpen={showSearchModal}
         ariaHideApp={false}
@@ -147,6 +146,7 @@ export const PokemonDateFetch: any = (num: number = 1) => {
             print(value);
           }}
         />
+        <Button></Button>
       </Modal>
 
       <Modal
