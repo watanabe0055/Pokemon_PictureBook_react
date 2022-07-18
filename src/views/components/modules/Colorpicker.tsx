@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from "react";
 
 const Colorpicker = (props: any) => {
+  const { setColort, color } = props;
   const colorPicker = (color: string) => {
-    props.setColort(color);
+    setColort(color);
     localStorage.setItem("pickColor", color);
   };
 
   return (
     <input
+      value={color}
       type="color"
       onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-        const value: string = event.target.value;
-        colorPicker(value);
+        const colorValue: string = event.target.value;
+        colorPicker(colorValue);
       }}
     />
   );
