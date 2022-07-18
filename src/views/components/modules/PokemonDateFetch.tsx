@@ -6,6 +6,8 @@ import Pokemonjson from "../../date/pokedex.json";
 
 import { Card } from "../atom/Card";
 import ModalCard from "../atom/ModalCard";
+import icon_search from "../asset/icon_search.svg";
+import close from "../asset/close.svg";
 
 const InputNumber = styled.input`
   margin: 15px;
@@ -16,6 +18,16 @@ const InputNumber = styled.input`
     padding-left: 5px;
     font-size: 0.8em;
   }
+`;
+
+const SearchIcon = styled.img`
+  width: 45px;
+  height: auto;
+`;
+const CancelIcon = styled.img`
+  width: 27px;
+  height: auto;
+  float: right;
 `;
 
 const customStyles = {
@@ -32,7 +44,7 @@ const customStyles = {
 
 // pokedex.jsonからデータを取得する
 export const PokemonDateFetch: any = (num: number = 1) => {
-  const [showModal, setShowModal] = useState(false);
+  const [showCardModal, setShowCardModal] = useState(false);
   const [pid, setPid] = useState();
   const [pname, setPname] = useState("");
   const [ptype, setPtype] = useState("");
@@ -42,16 +54,17 @@ export const PokemonDateFetch: any = (num: number = 1) => {
   const [pbaseSp_def, setPbaseSp_def] = useState("");
   const [pbaseSpeed, setPbaseSpeed] = useState("");
   const [pImage, setPimage] = useState("");
+  const [showSearchModal, setShowSearchModal] = useState(false);
 
   const print = (num: number = 1) => {
     //検索不可能なポケモンを選択した時に、モーダルを非表示にする
     if (num === 0 || num > 809) {
-      setShowModal(false);
+      setShowCardModal(false);
       return;
     }
     //検索可能なポケモンの時は、モーダルを表示する
     const pokemon = pokemonDate(num);
-    setShowModal(true);
+    setShowCardModal(true);
     setPid(pokemon.id);
     setPname(pokemon.name);
     setPtype(pokemon.type);
@@ -61,6 +74,7 @@ export const PokemonDateFetch: any = (num: number = 1) => {
     setPbaseSp_def(pokemon.base.sp_def);
     setPbaseSpeed(pokemon.base.speed);
     setPimage(pokemon.image);
+    setShowSearchModal(false);
   };
 
   const pokemonDate = (num: number = 1) => {
@@ -95,7 +109,8 @@ export const PokemonDateFetch: any = (num: number = 1) => {
 
   const closeModal = () => {
     document.body.style.overflow = "hidden";
-    setShowModal(false);
+    setShowCardModal(false);
+    setShowSearchModal(false);
   };
   const disableScroll = () => {
     document.body.style.overflow = "hidden";
@@ -103,21 +118,41 @@ export const PokemonDateFetch: any = (num: number = 1) => {
   const ableScroll = () => {
     document.body.style.overflow = "auto";
   };
+  const openSearchModal = () => {
+    setShowSearchModal(true);
+  };
 
   return (
     <>
-      <InputNumber
-        type="number"
-        placeholder="ID番号を入力してください"
-        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-          const value: any = Number(event.target.value);
-          print(value);
-        }}
+      <SearchIcon
+        src={icon_search}
+        alt="My Happy SVG"
+        onClick={openSearchModal}
       />
+
       <Modal
-        isOpen={showModal}
+        isOpen={showSearchModal}
         ariaHideApp={false}
-        onRequestClose={() => setShowModal(false)}
+        onRequestClose={() => setShowSearchModal(false)}
+        onAfterOpen={disableScroll}
+        onAfterClose={ableScroll}
+      >
+        <p>検索画面</p>
+        <CancelIcon src={close} alt="My Happy SVG" onClick={closeModal} />
+        <InputNumber
+          type="number"
+          placeholder="ID番号を入力してください"
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+            const value: any = Number(event.target.value);
+            print(value);
+          }}
+        />
+      </Modal>
+
+      <Modal
+        isOpen={showCardModal}
+        ariaHideApp={false}
+        onRequestClose={() => setShowCardModal(false)}
         style={customStyles}
         onAfterOpen={disableScroll}
         onAfterClose={ableScroll}

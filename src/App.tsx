@@ -20,7 +20,7 @@ function App() {
   return (
     <>
       <Contents theme={{ color: color }}>
-        <Colorpicker setColort={setColort} />
+        <Colorpicker setColort={setColort} color={color} />
         <PokemonDateFetch />
         <div>
           {Array(810)
