@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Modal from "react-modal";
 
+//ポケモンデータのjson
 import Pokemonjson from "../../date/pokedex.json";
 
+//コンポーネント
 import Button from "../atom/Button";
 import ModalCard from "../atom/ModalCard";
 import icon_search from "../asset/icon_search.svg";
@@ -45,7 +47,7 @@ const customStyles = {
 // pokedex.jsonからデータを取得する
 export const PokemonDateFetch: any = (num: number = 1) => {
   const [showCardModal, setShowCardModal] = useState(false);
-  const [pid, setPid] = useState();
+  const [pid, setPid] = useState("");
   const [pname, setPname] = useState("");
   const [ptype, setPtype] = useState("");
   const [pbaseAtt, setPbaseAtt] = useState("");
@@ -59,12 +61,19 @@ export const PokemonDateFetch: any = (num: number = 1) => {
   const print = (num: number = 1) => {
     //検索不可能なポケモンを選択した時に、モーダルを非表示にする
     if (num === 0 || num > 809) {
-      setShowCardModal(false);
+      setPid("???");
+      setPname("???");
+      setPtype("???");
+      setPbaseAtt("???");
+      setPbaseDef("???");
+      setPbaseSp_att("???");
+      setPbaseSp_def("???");
+      setPbaseSpeed("???");
+      setPimage("???");
       return;
     }
     //検索可能なポケモンの時は、モーダルを表示する
     const pokemon = pokemonDate(num);
-    setShowCardModal(true);
     setPid(pokemon.id);
     setPname(pokemon.name);
     setPtype(pokemon.type);
@@ -74,7 +83,6 @@ export const PokemonDateFetch: any = (num: number = 1) => {
     setPbaseSp_def(pokemon.base.sp_def);
     setPbaseSpeed(pokemon.base.speed);
     setPimage(pokemon.image);
-    setShowSearchModal(false);
   };
 
   const pokemonDate = (num: number = 1) => {
@@ -121,6 +129,12 @@ export const PokemonDateFetch: any = (num: number = 1) => {
   const openSearchModal = () => {
     setShowSearchModal(true);
   };
+  const handleClick = () => {
+    console.log("handle");
+    setShowCardModal(true);
+    setShowSearchModal(false);
+    console.log(pid);
+  };
 
   return (
     <>
@@ -146,7 +160,7 @@ export const PokemonDateFetch: any = (num: number = 1) => {
             print(value);
           }}
         />
-        <Button></Button>
+        <Button handleClick={handleClick} />
       </Modal>
 
       <Modal
