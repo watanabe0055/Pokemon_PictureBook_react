@@ -31,8 +31,9 @@ const SearchButton = styled.a`
     border-right: 3px solid #333333;
   }
 `;
-const Button = () => {
-  return <SearchButton>検索</SearchButton>;
+const Button = (props: any) => {
+  console.log("button atom");
+  return <SearchButton onClick={props.handleClick}>検索</SearchButton>;
 };
 
 export default Button;
