@@ -151,7 +151,7 @@ export const PokemonDateFetch: any = (num: number = 1) => {
         onAfterClose={ableScroll}
       >
         <p>検索画面</p>
-        <CancelIcon src={close} alt="My Happy SVG" onClick={closeModal} />
+        <CancelIcon src={close} alt="closeImg" onClick={closeModal} />
         <InputNumber
           type="number"
           placeholder="ID番号を入力してください"
